@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Box</title>
+</head>
+
+<body>
+    <form action="/communication" method="post">
+        <h1>Mail Box</h1>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+        <br>
+        <label for="email">To:</label>
+        <input type="text" id="email" name="email" placeholder="Enter Your Email" required>
+        <br>
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+        <br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" placeholder="Give A Message" required></textarea>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <style>
+        /* Style the form container */
+        
+        body {
+            min-height: 80vh;
+            position: relative;
+            background-image: url('/Image/Homepage.jpg');
+        }
+        
+        form {
+            width: 30%;
+            margin-top: 2%;
+            margin-left: 28%;
+            padding: 70px;
+            border-radius: 10px;
+            background: transparent;
+            backdrop-filter: blur(40px);
+            box-shadow: 0px 40px 40px rgb(0, 0, 0);
+        }
+        
+        h1 {
+            text-align: center;
+            cursor: default;
+            font-size: 36px;
+            margin-top: -10%;
+            margin-left: 0%;
+            background: rgb(0, 0, 0);
+            color: #00fd54;
+            text-shadow: 0 0 8px rgb(0, 0, 0);
+            border-bottom-left-radius: 55px;
+            border-bottom-right-radius: 55px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        
+        label {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 5px;
+            margin-left: 9%;
+            color: rgb(255, 255, 255);
+        }
+        
+         ::placeholder {
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        input[type="text"] {
+            font-size: 1em;
+            font-family: cursive;
+            width: 80%;
+            height: 20px;
+            padding: 12px;
+            margin-left: 9%;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: 16px;
+            background: black;
+            color: white;
+        }
+        
+        textarea {
+            font-size: 1em;
+            font-family: cursive;
+            width: 80%;
+            height: 100px;
+            padding: 12px;
+            margin-left: 9%;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: 16px;
+            background: black;
+            color: white;
+        }
+        
+        input[type="submit"] {
+            background-color: #1a791d;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 80px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 5%;
+            margin-left: 25%;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #3b5f70;
+        }
+        
+        input:hover,
+        textarea:hover {
+            border: 2px solid rgb(255, 245, 100);
+        }
+    </style>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const confirmation = urlParams.get('confirmation');
+        if (confirmation) {
+            alert(confirmation);
+            location.replace("mailbox.html");
+        }
+    </script>
+</body>
+<script src="index.js"></script>
+
+</html>

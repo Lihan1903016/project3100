@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Marks</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="6">CT MARKS</th>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <th>Series</th>
+                <th>Course</th>
+                <th>CT No.</th>
+                <th>Roll</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Data will be inserted dynamically here -->
+        </tbody>
+    </table>
+    <style>
+        body {
+            background: url("/Image/ruet.png");
+            min-height: auto;
+        }
+        
+        table {
+            width: 50%;
+            margin-left: 45%;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            border: 1.8px solid rgb(65, 65, 65);
+            padding: 8px;
+            background: transparent;
+            backdrop-filter: blur(60px);
+            resize: both;
+            text-align: center;
+        }
+        
+        th {
+            color: white;
+        }
+        
+        td {
+            color: white;
+        }
+    </style>
+    <script>
+        // Fetch data from server and populate the table
+        fetch('/ct_data')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('table-body');
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+            <td>${row.department}</td>
+            <td>${row.series}</td>
+            <td>${row.course}</td>
+            <td>${row.ctno}</td>
+            <td>${row.roll}</td>
+            <td>${row.marks}</td>
+          `;
+                    tableBody.appendChild(tr);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+<script src="index.js"></script>
+
+</html>
