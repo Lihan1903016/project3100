@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lihan Ahmed-project 3100</title>
+</head>
+<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <div id="watch">
+        <div id="time">Loading Time....</div>
+    </div>
+    <div class="navbar">
+        <nav class="navigation">
+            <a href="#student-registration" class="student-reg-link">Sign Up(Student)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="#teacher-registration" class="teacher-reg-link">Sign Up(Teacher)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="#student-login" class="student-login-link">Sign In(Student)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="#teacher-login" class="teacher-login-link">Sign In(Teacher)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </nav>
+    </div>
+    <div class="studentregform">
+        <h1>Student Registration</h1>
+        <form action="/studentform" method="post">
+            <ion-icon name="close-circle" class="closebtn1"></ion-icon>
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="email" name="email" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" class="password" name="password" required><br><br>
+            <label for="department">Department:</label>
+            <select id="department" class="department" name="department" required>
+                <option selected disabled></option>
+                
+                <option disabled>Faculty of Electrical & Computer Engineering</option>
+                <option value="CSE">Computer Science & Engineering(CSE)</option>
+                <option value="EEE">Electrical & Electronic Engineering(EEE)</option>
+                <option value="ECE">Electrical & Computer Engineering(ECE)</option>
+                <option value="ETE">Electronics & Telecommunication Engineering(ETE)</option>
+                
+                <option disabled>Faculty of Mechanical Engineering</option>
+                <option value="ME">Mechanical Engineering(ME)</option>
+                <option value="MTE">Mechatronics Engineering(MTE)</option>
+                <option value="MSE">Materials Science & Engineering(MSE)</option>
+                <option value="IPE">Industrial & Production Engineering(IPE)</option>
+                <option value="CFPE">Chemical & Food Process Engineering(CFPE)</option>
+                <option value="GCE">Glass & Ceramic Engineering(GCE)</option>
+
+                <option disabled>Faculty of Civil Engineering</option>
+                <option value="CE">Civil Engineering (CE)</option>
+                <option value="BECM">Building Engineering & Construction Management (BECM)</option>
+                <option value="URP">Urban & Regional Planning (URP)</option>
+                <option value="Arch">Architecture (Arch.)</option>
+              </select><br><br>
+            <label for="series">Series:</label>
+            <input type="number" id="series" class="series" name="series" required><br><br>
+            <label for="roll">Roll:</label>
+            <input type="number" id="roll" class="roll" name="roll" required><br><br>
+            <input type="submit" value="Sign Up" class="signup">
+        </form>
+    </div>
+
+    <div class="teacherregform">
+        <h1>Teacher Registration</h1>
+        <form action="/teacherform" method="post"  onsubmit="return validatePasscode();">
+            <ion-icon name="close-circle" class="closebtn2"></ion-icon>
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="email" name="email" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" class="password" name="password" required><br><br>
+            <label for="department">Department:</label>
+            <select id="department" class="department" name="department" required>
+                <option selected disabled></option>
+                
+                <option disabled>Faculty of Electrical & Computer Engineering</option>
+                <option value="CSE">Computer Science & Engineering(CSE)</option>
+                <option value="EEE">Electrical & Electronic Engineering(EEE)</option>
+                <option value="ECE">Electrical & Computer Engineering(ECE)</option>
+                <option value="ETE">Electronics & Telecommunication Engineering(ETE)</option>
+                
+                <option disabled>Faculty of Mechanical Engineering</option>
+                <option value="ME">Mechanical Engineering(ME)</option>
+                <option value="MTE">Mechatronics Engineering(MTE)</option>
+                <option value="MSE">Materials Science & Engineering(MSE)</option>
+                <option value="IPE">Industrial & Production Engineering(IPE)</option>
+                <option value="CFPE">Chemical & Food Process Engineering(CFPE)</option>
+                <option value="GCE">Glass & Ceramic Engineering(GCE)</option>
+
+                <option disabled>Faculty of Civil Engineering</option>
+                <option value="CE">Civil Engineering (CE)</option>
+                <option value="BECM">Building Engineering & Construction Management (BECM)</option>
+                <option value="URP">Urban & Regional Planning (URP)</option>
+                <option value="Arch">Architecture (Arch.)</option>
+              </select><br><br>
+              <label for="passcode">Passcode of Teachers:</label>
+              <input type="text" id="passcode" class="passcode" name="passcode" required><br><br>
+            <input type="submit" value="Sign Up" class="signup">
+        </form>
+    </div>
+
+    <div class="studentloginform">
+        <h1>Student login</h1>
+        <ion-icon name="close-circle" class="closebtn3"></ion-icon>
+        <form action="/studentlogin" method="post" onsubmit="storeStudentLoginInfo()">
+            <label for="email">Email:</label>
+            <input type="email" id="studentEmail" class="email" name="email" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="studentPassword" class="password" name="password" required><br><br>
+            <input type="submit" value="Login" class="loginbtn">
+        </form>
+    </div>
+
+    <div class="teacherloginform">
+        <h1>Teacher login</h1>
+        <ion-icon name="close-circle" class="closebtn4"></ion-icon>
+        <form action="/teacherlogin" method="post" onsubmit="storeTeacherLoginInfo()">
+            <label for="email">Email:</label>
+            <input type="email" id="teacherEmail" class="email" name="email" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="teacherPassword" class="password" name="password" required><br><br>
+            <input type="submit" value="Login" class="loginbtn">
+        </form>
+    </div>
+    <div class="contact">
+        <a href="ContactInfo.html" target="_blank">Contact With Us</a>
+    </div>
+
+    <div class="adminlogin">
+        <h1>Admin Panel</h1>
+        <ion-icon name="close-circle" class="closebtn5"></ion-icon>
+        <form action="/adminlogin" method="post">
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="email" name="email" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" class="password" name="password" required><br><br>
+            <input type="submit" value="Login" class="loginbtn">
+        </form>
+    </div>
+
+    <button type="submit" class="admin">Admin</button>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .navigation {
+            text-align: center;
+            align-items: center;
+            padding: 5px;
+        }
+        
+        .navigation a {
+            position: relative;
+            font-size: 0.8em;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .navigation a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 105px;
+            height: 2.5px;
+            background: #00a2ff;
+            border-radius: 5px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s;
+        }
+        
+        .navigation a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .navbar {
+            cursor: pointer;
+            position: fixed;
+            width: 620px;
+            height: 40px;
+            border: 3px solid rgb(0, 208, 255);
+            background: rgb(0, 0, 0);
+            box-shadow: 0 0 20px white;
+            border-radius: 50px;
+            margin-top: -40%;
+            margin-left: 0%;
+        }
+        
+        body {
+            min-height: 80vh;
+            position: relative;
+            display: flex;
+            background:url('/Image/Homepage.jpg');
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+        }#watch {
+            width: 430px;
+            height: 100px;
+            border-radius: 200px;
+            border: 1px solid white;
+            margin-top: -10%;
+            margin-left: 0%;
+            position: absolute;
+        }
+        #time {
+            color: white;
+            font-size: 32px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        h1 {
+            color: rgb(255, 255, 255);
+            margin-top: 5%;
+            margin-left: 37%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            width: 240px;
+            text-shadow: 0 0 10px rgb(255, 255, 255);
+            font-size: 0.8em;
+            cursor: none;
+        }
+        
+        .studentregform {
+            position: fixed;
+            margin-top: 5%;
+            font-size: 1.3em;
+            width: 550px;
+            height: 520px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 5px;
+            background: transparent;
+            z-index: 1;
+            box-shadow: 0 0 50px rgb(255, 255, 255);
+            backdrop-filter: blur(20px);
+            transform: scale(0);
+            transition: transform 0.4s;
+        }
+        
+        .studentregform.active-popup {
+            animation: popupAnimation1 0.8s forwards;
+        }
+        
+        .teacherregform {
+            position: fixed;
+            margin-top: 3%;
+            font-size: 1.3em;
+            width: 550px;
+            height: 450px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 5px;
+            background: transparent;
+            z-index: 1;
+            box-shadow: 0 0 50px rgb(255, 255, 255);
+            backdrop-filter: blur(20px);
+            transform: scale(0);
+            transition: transform 0.4s;
+        }
+        
+        .teacherregform.active-popup {
+            animation: popupAnimation1 0.8s forwards;  
+        }
+        
+        .studentloginform {
+            position: fixed;
+            margin-top: 5%;
+            font-size: 1.3em;
+            width: 550px;
+            height: 320px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 5px;
+            background: transparent;
+            z-index: 1;
+            box-shadow: 0 0 50px rgb(255, 255, 255);
+            backdrop-filter: blur(20px);
+            transform: scale(0);
+            transition: transform 0.4s;
+        }
+        
+        .studentloginform.active-popup {
+            animation: popupAnimation2 0.8s forwards;
+        }
+        
+        .teacherloginform {
+            position: fixed;
+            margin-top: 5%;
+            font-size: 1.3em;
+            width: 550px;
+            height: 320px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 5px;
+            background: transparent;
+            z-index: 1;
+            box-shadow: 0 0 50px rgb(255, 255, 255);
+            backdrop-filter: blur(20px);
+            transform: scale(0);
+            transition: transform 0.4s;
+        }
+        
+        .teacherloginform.active-popup {
+            animation: popupAnimation2 0.8s forwards;
+        }
+        
+        .closebtn1 {
+            position: relative;
+            display: flex;
+            font-size: 1.6em;
+            color: #000000;
+            margin-top: -4%;
+            margin-left: 88%;
+            z-index: 1;
+            border: 3px solid black;
+            border-radius: 50px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .closebtn2 {
+            position: relative;
+            display: flex;
+            font-size: 1.6em;
+            color: #000000;
+            margin-top: -4%;
+            margin-left: 88%;
+            z-index: 1;
+            border: 3px solid black;
+            border-radius: 50px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .closebtn3 {
+            position: relative;
+            display: flex;
+            font-size: 1.6em;
+            color: #000000;
+            margin-top: -4%;
+            margin-left: 88%;
+            z-index: 1;
+            border: 3px solid black;
+            border-radius: 50px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .closebtn4 {
+            position: relative;
+            display: flex;
+            font-size: 1.6em;
+            color: #000000;
+            margin-top: -4%;
+            margin-left: 88%;
+            z-index: 1;
+            border: 3px solid black;
+            border-radius: 50px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .closebtn5 {
+            position: relative;
+            display: flex;
+            font-size: 1.6em;
+            color: #000000;
+            margin-top: -4%;
+            margin-left: 88%;
+            z-index: 1;
+            border: 3px solid black;
+            border-radius: 50px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        label {
+            margin-left: 10%;
+            font-size: 0.9em;
+            font-family: cursive;
+            border-bottom-style: groove;
+            border-radius: 5px;
+            cursor: none;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 15px rgb(254, 254, 254);
+        }
+        
+        input.name {
+            width: 55%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(51, 0, 0);
+            outline: 0;
+            margin-left: 16%;
+            font-size: 0.7em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.name:hover {
+            border-bottom: 2px solid rgb(30, 255, 0);
+        }
+        
+        input.email {
+            width: 55%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(63, 0, 0);
+            outline: 0;
+            justify-content: center;
+            align-items: center;
+            margin-left: 16%;
+            font-size: 0.7em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.email:hover {
+            border-bottom: 2px solid rgb(255, 106, 0);
+        }
+        
+        input.password {
+            width: 55%;
+            border: 0;
+            color: #ffffff;
+            border-bottom: 2px solid rgb(52, 0, 0);
+            outline: 0;
+            margin-left: 9.8%;
+            font-size: 0.7em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.password:hover {
+            border-bottom: 2px solid rgb(255, 255, 255);
+        }
+        
+        .department {
+            width: 60%;
+            border: 3px solid rgb(101, 101, 101);
+            border-radius: 40px;
+            color: rgb(255, 255, 255);
+            margin-left: 3%;
+            font-size: 0.7em;
+            font-family: cursive;
+            padding: 7px 0;
+            cursor: pointer;
+            text-align: center;
+            background: black;
+            transition: border-color 0.2s;
+        }
+        
+        .department:hover {
+            border: 2px solid rgb(0, 255, 145);
+        }
+        
+        input.series {
+            width: 20%;
+            border: 0;
+            color: white;
+            border-bottom: 2px solid rgb(46, 0, 0);
+            outline: 0;
+            margin-left: 13.6%;
+            font-size: 0.7em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.series:hover {
+            border-bottom: 2px solid yellow;
+        }
+        
+        input.roll {
+            width: 20%;
+            border: 0;
+            color: white;
+            border-bottom: 2px solid rgb(46, 0, 0);
+            outline: 0;
+            margin-left: 17.6%;
+            font-size: 0.7em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.roll:hover {
+            border-bottom: 2px solid rgb(0, 52, 195);
+        }
+        
+        input.signup {
+            margin-left: 30%;
+            width: 200px;
+            margin-top: 0%;
+            font-family: serif;
+            font-size: 1em;
+            font-weight: 200;
+            border-radius: 10px;
+            background: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            opacity: 50%;
+            cursor: grab;
+            backdrop-filter: blur(60px);
+            border: 3px solid rgb(0, 0, 0);
+            box-shadow: 0 0 20px white;
+        }
+        
+        input.loginbtn {
+            margin-left: 30%;
+            margin-top: 0%;
+            width: 200px;
+            font-family: cursive;
+            font-size: 1em;
+            font-weight: 200;
+            border-radius: 50px;
+            background: transparent;
+            color: rgb(255, 255, 255);
+            cursor: grab;
+            border: 1px solid black;
+            box-shadow: 0 0 50px white;
+        }
+        
+        input.passcode{
+            width: 35%;
+            border: 0;
+            color: #ffffff;
+            border-bottom: 2px solid rgb(52, 0, 0);
+            outline: 0;
+            font-size: 0.7em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+            text-align: center;
+        }
+        .contact {
+            display: flex;
+            width: 200px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            background: #000000;
+            margin-top: 43%;
+            margin-right: 0px;
+            border-bottom-left-radius: 50px;
+            border-top-right-radius: 50px;
+            border: 2px solid rgb(0, 0, 0);
+            box-shadow: 0 3px 3px rgb(125, 0, 0);
+        }
+        
+        .contact a {
+            font-size: 0.9em;
+            color: rgb(255, 255, 255);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            justify-content: center;
+            text-decoration: none;
+        }
+        
+        .contact a:hover {
+            color: #00a2ff;
+        }
+        
+        .admin {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            margin-top: -40%;
+            margin-left: 95%;
+            box-shadow: 0 10px 10px white;
+            background: #000000;
+            color: white;
+            cursor: pointer;
+            border: 1px solid black;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        .admin:hover {
+            margin-top: -40.1%;
+            background: red;
+        }
+        
+        .adminlogin {
+            position: fixed;
+            margin-top: -10%;
+            margin-left: 68%;
+            font-size: 1.3em;
+            width: 450px;
+            height: 250px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 10px;
+            background: transparent;
+            z-index: 1;
+            box-shadow: 0 0 50px rgb(255, 255, 255);
+            backdrop-filter: blur(20px);
+            transform:scale(0);
+            transition: transform 0.4s;
+        }
+        
+        .adminlogin.active-popup {
+            left: 0;
+            transform:scale(1);
+        }
+        @keyframes popupAnimation1 {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes popupAnimation2{
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+    <script>
+        const closebtn1 = document.querySelector('.closebtn1');
+        const closebtn2 = document.querySelector('.closebtn2');
+        const closebtn3 = document.querySelector('.closebtn3');
+        const closebtn4 = document.querySelector('.closebtn4');
+        const closebtn5 = document.querySelector('.closebtn5');
+        const adminlogin = document.querySelector('.adminlogin');
+        const adminbtn = document.querySelector('.admin');
+        const email = document.querySelector('.email');
+
+        const password = document.querySelector('.password');
+        const studentregform = document.querySelector('.studentregform');
+        const teacherregform = document.querySelector('.teacherregform');
+
+        const studentreglink = document.querySelector('.student-reg-link');
+        const teacherreglink = document.querySelector('.teacher-reg-link');
+
+        const studentloginlink = document.querySelector('.student-login-link');
+        const teacherloginlink = document.querySelector('.teacher-login-link');
+
+        const studentloginform = document.querySelector('.studentloginform');
+        const teacherloginform = document.querySelector('.teacherloginform ');
+        studentreglink.addEventListener('click', () => {
+            studentregform.classList.add('active-popup');
+        });
+        teacherreglink.addEventListener('click', () => {
+            teacherregform.classList.add('active-popup');
+        });
+
+        studentloginlink.addEventListener('click', () => {
+            studentloginform.classList.add('active-popup');
+        });
+        teacherloginlink.addEventListener('click', () => {
+            teacherloginform.classList.add('active-popup');
+        });
+
+        closebtn1.addEventListener('click', () => {
+            studentregform.classList.remove('active-popup');
+        });
+        closebtn2.addEventListener('click', () => {
+            teacherregform.classList.remove('active-popup');
+        });
+        closebtn3.addEventListener('click', () => {
+            studentloginform.classList.remove('active-popup');
+        });
+        closebtn4.addEventListener('click', () => {
+            teacherloginform.classList.remove('active-popup');
+        });
+        closebtn5.addEventListener('click', () => {
+            adminlogin.classList.remove('active-popup');
+        });
+        adminbtn.addEventListener('click', () => {
+            adminlogin.classList.add('active-popup');
+        });
+
+
+        function validatePasscode() {
+        var passcodeInput = document.getElementById("passcode").value;
+        if (passcodeInput !== "@xyz@") {
+            alert("Warning!Go back Home.");
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const response = urlParams.get('response');
+        if (response) {
+            alert(response);
+            location.replace("index.html");
+        }
+        const urlParams2 = new URLSearchParams(window.location.search);
+        const checkStdEmail = urlParams2.get('checkStdEmail');
+        if (checkStdEmail) {
+            alert(checkStdEmail);
+            location.replace("index.html");
+        }
+        const urlParams3 = new URLSearchParams(window.location.search);
+        const checkTeacherEmail= urlParams3.get('checkTeacherEmail');
+        if (checkTeacherEmail) {
+            alert(checkTeacherEmail);
+            location.replace("index.html");
+        }
+        
+
+        
+        function updateTime() {
+            const now = new Date();
+            const timeElement = document.getElementById('time');
+
+            const hours = (now.getUTCHours() + 6) % 12; // 12-hour format
+            const minutes = now.getUTCMinutes();
+            const seconds = now.getUTCSeconds();
+            const period = (now.getUTCHours() + 6) >= 12 ? 'PM' : 'AM';
+
+            const hourString = `${hours === 0 ? 12 : hours}`;
+            const minuteString = `${minutes.toString().padStart(2, '0')}`;
+            const secondString = `${seconds.toString().padStart(2, '0')}`;
+
+            const timeString = `${hourString}:${minuteString}:${secondString} ${period}`;
+            const coloredTimeString = `${`<span style="color:green">`+hourString+`</span>`}:${'<span style="color: yellow;">' + minuteString + '</span>'}:${'<span style="color: orange;">' + secondString + '</span>'} ${period}`;
+            
+            timeElement.innerHTML = coloredTimeString;
+        }
+        setInterval(updateTime, 1000);
+
+            // Function to handle student login
+    function storeStudentLoginInfo() {
+        const studentEmail = document.getElementById('studentEmail').value;
+        const studentPassword = document.getElementById('studentPassword').value;
+
+        // Create an object to store student login info
+        const studentLoginInfo = {
+            email: studentEmail,
+            password: studentPassword
+        };
+
+        // Store the student login info in localStorage
+        localStorage.setItem('studentLoginInfo', JSON.stringify(studentLoginInfo));
+    }
+
+    // Function to handle teacher login
+    function storeTeacherLoginInfo() {
+        const teacherEmail = document.getElementById('teacherEmail').value;
+        const teacherPassword = document.getElementById('teacherPassword').value;
+
+        // Create an object to store teacher login info
+        const teacherLoginInfo = {
+            email: teacherEmail,
+            password: teacherPassword
+        };
+
+        // Store the teacher login info in localStorage
+        localStorage.setItem('teacherLoginInfo', JSON.stringify(teacherLoginInfo));
+    }
+ </script>
+
+</body>
+<script src="index.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>

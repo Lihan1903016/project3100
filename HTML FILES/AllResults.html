@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Marks</title>
+</head>
+
+<body>
+    <div class="Delete">
+        <h2>To Delete Your Department's Information</h2>
+        <form action="/delete" method="get">
+            <label for="department">Department:</label>
+            <select name="department" id="department" required>
+                <option selected disabled>Select Department</option>
+                
+                <option disabled>Faculty of Electrical & Computer Engineering</option>
+                <option value="CSE">Computer Science & Engineering(CSE)</option>
+                <option value="EEE">Electrical & Electronic Engineering(EEE)</option>
+                <option value="ECE">Electrical & Computer Engineering(ECE)</option>
+                <option value="ETE">Electronics & Telecommunication Engineering(ETE)</option>
+                
+                <option disabled>Faculty of Mechanical Engineering</option>
+                <option value="ME">Mechanical Engineering(ME)</option>
+                <option value="MTE">Mechatronics Engineering(MTE)</option>
+                <option value="MSE">Materials Science & Engineering(MSE)</option>
+                <option value="IPE">Industrial & Production Engineering(IPE)</option>
+                <option value="CFPE">Chemical & Food Process Engineering(CFPE)</option>
+                <option value="GCE">Glass & Ceramic Engineering(GCE)</option>
+
+                <option disabled>Faculty of Civil Engineering</option>
+                <option value="CE">Civil Engineering (CE)</option>
+                <option value="BECM">Building Engineering & Construction Management (BECM)</option>
+                <option value="URP">Urban & Regional Planning (URP)</option>
+                <option value="Arch">Architecture (Arch.)</option>
+            </select>
+
+            <label for="series">Series:</label>
+            <input type="text" name="series" id="series" placeholder="series" required>
+            <br>
+            <input type="submit" value="Erase All Data" id="Deletebtn">
+        </form>
+    </div>
+    <br><br><br>
+    <div class="Search">
+        <h3>Search Your Department's Students Information</h3>
+        <form action="/searchbydept" method="get">
+            &nbsp;&nbsp;
+            <label for="Department">Department:</label>
+            <select name="department" id="department">
+                <option selected disabled>Select Department</option>
+                
+                <option disabled>Faculty of Electrical & Computer Engineering</option>
+                <option value="CSE">Computer Science & Engineering(CSE)</option>
+                <option value="EEE">Electrical & Electronic Engineering(EEE)</option>
+                <option value="ECE">Electrical & Computer Engineering(ECE)</option>
+                <option value="ETE">Electronics & Telecommunication Engineering(ETE)</option>
+                
+                <option disabled>Faculty of Mechanical Engineering</option>
+                <option value="ME">Mechanical Engineering(ME)</option>
+                <option value="MTE">Mechatronics Engineering(MTE)</option>
+                <option value="MSE">Materials Science & Engineering(MSE)</option>
+                <option value="IPE">Industrial & Production Engineering(IPE)</option>
+                <option value="CFPE">Chemical & Food Process Engineering(CFPE)</option>
+                <option value="GCE">Glass & Ceramic Engineering(GCE)</option>
+
+                <option disabled>Faculty of Civil Engineering</option>
+                <option value="CE">Civil Engineering (CE)</option>
+                <option value="BECM">Building Engineering & Construction Management (BECM)</option>
+                <option value="URP">Urban & Regional Planning (URP)</option>
+                <option value="Arch">Architecture (Arch.)</option>
+              </select>
+            <label for="series">Series:</label>
+            <input type="text" name="series" id="series" placeholder="series" required>
+            </select>
+            <button type="submit" class="Searchbtn">Search</button>
+        </form>
+    </div>
+      
+    <table>
+        <thead>
+            <tr>
+                <th colspan="6">CT MARKS</th>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <th>Series</th>
+                <th>Course</th>
+                <th>CT No.</th>
+                <th>Roll</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Data will be inserted dynamically here -->
+        </tbody>
+    </table>
+    <style>
+        body {
+            background-color: black;
+            position: relative;
+            min-height: 20000vh;
+        }
+        
+        table {
+            position: absolute;
+            margin-top: 0.5%;
+            width: 50%;
+            margin-left: 50.5%;
+            border-collapse: collapse;
+            border-radius: 5px;
+            box-shadow: -8px 8px 8px rgb(0, 0, 0);
+        }
+        .Delete{
+            position: fixed;
+            margin-top: 0%;
+            margin-left: -0.21%;
+            width: 48%;
+            color: white;
+            height: 150px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid white;
+            box-shadow: 0 10px 10px white;
+        }
+        th,
+        td {
+            border: 1.8px solid rgb(0, 0, 0);
+            padding: 8px;
+            background: transparent;
+            backdrop-filter: blur(40px);
+            resize: both;
+            text-align: center;
+        }
+        
+        th {
+            color: white;
+        }
+        
+        td {
+            color: white;
+        }
+        .Search{
+            position:fixed;
+            margin-top: 31%;
+            margin-left: -0.21%;
+            width: 48%;
+            height: 140px;
+            border-radius: 8px;
+            color: white;
+            border: 2px solid white;
+            box-shadow: 0 10px 10px white;
+        }
+        h3{
+            text-align: center;
+        }
+        input.roll,input.marks,input.course,input.ctno{
+            font-size: 1em;
+            border:0;
+            outline: 0;
+            border-bottom: 2px solid white;
+            background:transparent;
+            text-align: center;
+            color: white;
+        }
+        input[type="submit"]{
+            border: 2px solid black;
+            cursor: pointer;
+            font-size: large;
+            border-radius: 10px;
+        }
+        #department{
+            border:2px solid black;
+            background: black;
+            color: white;
+        }
+        #series{
+            border: 2px solid black;
+            background: black;
+            color: white;
+            width: 10%;
+            border: 0;
+            outline: 0;
+            border-bottom: 2px solid white;
+            text-align: center;
+        }
+        ::placeholder{
+            color: rgb(80, 80, 80);
+            font: 1em;
+        }
+        #Deletebtn{
+            margin-top: 2%;
+        }
+        option{
+            text-align: center;
+        }
+        #department{
+            border-radius: 10px;
+            border: 1px solid white;
+        }
+    </style>
+</body>
+<script>
+    function DataTable(data) {
+        const tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = '';
+
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.department}</td>
+                <td>${row.series}</td>
+                <td>${row.course}</td>
+                <td>${row.ctno}</td>
+                <td>${row.roll}</td>
+                <td>${row.marks}</td>
+                <td><button class="edit-btn">Edit</button></td>
+            `;
+            tr.querySelector('.edit-btn').addEventListener('click', () => editRow(tr, row));
+            tableBody.appendChild(tr);
+        });
+    }
+
+    document.querySelector('table').addEventListener('click', function(e) {
+            if (e.target && e.target.matches('button.edit')) {
+                editRow(e.target.closest('tr'));
+            } else if (e.target && e.target.matches('button.save')) {
+                saveRow(e.target.closest('tr'));
+            }
+        });
+// Function to handle "Edit" button click
+function editRow(row) {
+    const cells = row.getElementsByTagName('td');
+    
+    // Extract data from the table cells
+    const department = cells[0].textContent;
+    const series = cells[1].textContent;
+    const course = cells[2].textContent;
+    const ctno = cells[3].textContent;
+    const roll = cells[4].textContent;
+    const marks = cells[5].textContent;
+
+    // Store these values in data attributes of the row
+    row.setAttribute('data-department', department);
+    row.setAttribute('data-series', series);
+    row.setAttribute('data-course', course);
+    row.setAttribute('data-ctno', ctno);
+    row.setAttribute('data-roll', roll);
+
+    // Replace the row content with input fields for editing
+    cells[5].innerHTML = `<input type="text" name="edit-marks" value="${marks}">`;
+
+    // Add a "Save" button
+    cells[6].innerHTML = '<button class="save">Save</button>';
+}
+
+
+// Function to handle "Save" button click
+function saveRow(row) {
+    const cells = row.getElementsByTagName('td');
+
+    // Extract edited data from input fields
+    const marks = cells[5].querySelector('input[name="edit-marks"]').value;
+
+    // Retrieve department, series, course, ctno, and roll from data attributes
+    const department = row.getAttribute('data-department');
+    const series = row.getAttribute('data-series');
+    const course = row.getAttribute('data-course');
+    const ctno = row.getAttribute('data-ctno');
+    const roll = row.getAttribute('data-roll');
+
+    // Send edited data to the server via AJAX
+    $.post('/updateRow', {
+        department,
+        series,
+        course,
+        ctno,
+        roll,
+        marks
+    }, function(response) {
+        // Handle the response from the server (e.g., display success or error message)
+        if (response.message) {
+            console.log('Row updated successfully');
+            // Replace the input field with the updated data
+            cells[5].textContent = marks;
+            cells[6].innerHTML = '<button class="edit">Edit</button>';
+        } else {
+            console.error('Failed to update row');
+            // Optionally, you can handle error cases here
+        }
+    });
+}
+
+
+    function MainTable() {
+        fetch('/ct_data')
+            .then(response => response.json())
+            .then(data => {
+                DataTable(data);
+            })
+            .catch(error => console.error(error));
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        MainTable();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchForm = document.querySelector('.Search form');
+        searchForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const departmentSelect = document.querySelector('.Search #department');
+            const seriesSelect = document.querySelector('.Search #series');
+            const tableBody = document.getElementById('table-body');
+            const selectedDepartment = departmentSelect.value;
+            const selectedSeries = seriesSelect.value;
+
+            if (selectedDepartment && selectedSeries) {
+                fetch(`/searchbydept?department=${selectedDepartment}&series=${selectedSeries}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        DataTable(data);
+                    })
+                    .catch(error => console.error(error));
+            }
+        });
+    });
+</script>
+
+
+<script src="index.js"></script>

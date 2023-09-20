@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers Information</title>
+</head>
+<body>
+    <h1>Teachers Information</h1>
+    <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Department</th>
+            <th>Entry Time</th>
+          </tr>
+        </thead>
+        <tbody id="teacherTable">
+        </tbody>
+      </table>
+        
+        <style>
+            body {
+            text-align: center;
+            padding: 20px;
+            }
+            h1{
+                text-align: center;
+                margin-top: -2%;
+            }
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #f5f5f5;
+            }
+
+            th {
+                background-color: #333;
+                color: white;
+                font-weight: bold;
+                padding: 10px;
+                text-align: center;
+            }
+            tr:nth-child(even) {
+             background-color: #f2f2f2;
+            }
+
+            tr:hover {
+              background-color: #b4b4b4;
+            }
+            td {
+             padding: 10px;
+            }
+      </style>
+      <script>
+      fetch('/teachersInfo')
+      .then(response => response.json())
+      .then(data => {
+        const teacherTable = document.getElementById('teacherTable');
+        data.forEach(teacher=> {
+          const inputDateTime=teacher.Inserted_At.value;
+          const options = {
+            timeZone: 'Asia/Dhaka', // Bangladeshi Time Zone
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            timeZoneName: 'short'
+            };
+        const BangladeshDateTime = new Intl.DateTimeFormat('en-US', options).format(inputDateTime);
+        
+        const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${teacher.name}</td>
+            <td>${teacher.email}</td>
+            <td>${teacher.password}</td>
+            <td>${teacher.department}</td>
+            <td>${BangladeshDateTime}</td>
+          `;
+          teacherTable.appendChild(row);
+    });
+});
+const logoutButton = document.getElementById('logout-btn');
+        logoutButton.addEventListener('click', () => {
+        alert('Click OK to logout.');
+        window.location.href="index.html";
+});     
+</script>
+</body>
+<script src="index.js"></script>
+</html>

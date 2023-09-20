@@ -1,0 +1,48 @@
+//Creating students Table in Database
+
+CREATE TABLE students Of RUET (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  department VARCHAR(255) NOT NULL,
+  series INT NOT NULL,
+  roll INT NOT NULL
+);
+
+//Creating teachers Table in Database
+
+CREATE TABLE Teachers_Of_RUET (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  department VARCHAR(255) NOT NULL
+);
+
+
+//Creating CT Marks Table in Database
+
+CREATE TABLE CT_MARKS(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  department VARCHAR(255) NOT NULL,
+  series INT NOT NULL,
+  roll INT NOT NULL,
+  Inserted_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+//Drop Column
+ALTER TABLE your_table_name DROP COLUMN Updated_At
+
+//Insert New Column About Data Inserting Data time
+
+ALTER TABLE your_table_name ADD COLUMN inserted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+
+//Insert New Column About Data Update time
+
+ALTER TABLE your_table_name ADD COLUMN Updated_At TIMESTAMP DEFAULT;
+
+
+//Delete All Data from table
+DELETE FROM table_name;

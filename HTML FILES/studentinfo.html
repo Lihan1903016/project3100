@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Informations</title>
+</head>
+<body>
+    <h1>
+        Students Information
+    </h1>
+    <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Department</th>
+            <th>Series</th>
+            <th>Roll</th>
+            <th>Entry Time</th>
+          </tr>
+        </thead>
+        <tbody id="studentTable">
+        </tbody>
+      </table>
+</body>
+
+<style>
+body {
+  text-align: center;
+  padding: 20px;
+}
+h1{
+    text-align: center;
+    margin-top: -2%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: #f5f5f5;
+}
+
+th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #b4b4b4;
+}
+td {
+  padding: 10px;
+}
+</style>
+
+<script>
+    fetch('/studentsInfo')
+      .then(response => response.json())
+      .then(data => {
+        const studentTable = document.getElementById('studentTable');
+        data.forEach(student => {
+          const inputDateTime=student.Inserted_At.value;
+          const options = {
+            timeZone: 'Asia/Dhaka', // Bangladeshi Time Zone
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            timeZoneName: 'short'
+            };
+        const BangladeshDateTime = new Intl.DateTimeFormat('en-US', options).format(inputDateTime);
+        
+        const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.password}</td>
+            <td>${student.department}</td>
+            <td>${student.series}</td>
+            <td>${student.roll}</td>
+            <td>${BangladeshDateTime}</td>
+          `;
+          studentTable.appendChild(row);
+    });
+});
+</script>
+
+<script src="index.js"></script>
+</html>

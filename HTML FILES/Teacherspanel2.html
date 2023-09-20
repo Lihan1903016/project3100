@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Panel</title>
+</head>
+<body>
+    <div class="logout-button">
+        <button id="logout-btn">Logout</button>
+    </div>
+    <a href="Teacherspanel.html" class="previous_page">Previous Page(Teachers Panel)</a>
+    <a href="AllResults.html" class="link">Click Here to See all result</a>
+    <div class="CT-Marks2">
+        <form action="/ctmarks2" method="GET">
+            <h1>&nbsp;&nbsp;&nbsp;&nbsp;CT Marks</h1>
+            <label for="rollno">Roll-No:</label>
+            <input type="number" id="rollno" class="rollno" name="rollno" placeholder="Roll must be 3 digits:001" required onfocus="clearInput(this)"><br><br>
+    
+            <label for="marks">CT mark:</label>
+            <input type="number" id="marks" class="marks" name="marks" placeholder="Enter Obtained Marks" required onfocus="clearInput(this)"><br><br>
+            <input type="hidden" name="department" value="">
+            <input type="hidden" name="series" value="">
+            <input type="hidden" name="course" value="">
+            <input type="hidden" name="ctno" value="">
+            <input type="submit" value="Submit" class="submit">
+        </form>
+    </div>
+</body>
+<style>
+     body {
+            min-height: 80vh;
+            position: relative;
+            display: flex;
+            background: url('/Image/Homepage.jpg');
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .CT-Marks2 {
+            position: fixed;
+            margin-top: 5%;
+            margin-left: 35%;
+            font-size: 1.3em;
+            width: 550px;
+            height: 390px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 20px;
+            backdrop-filter: blur(70px);
+            z-index: 1;
+            box-shadow: 0 0 50px rgb(255, 255, 255);
+        }
+        
+        .CT-Marks2 h1 {
+            margin-left: 25%;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 5px rgb(240, 240, 240);
+        }
+        
+        label {
+            margin-left: 10%;
+            font-size: 0.9em;
+            font-family: cursive;
+            border-bottom-style: groove;
+            border-radius: 5px;
+            cursor: none;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 15px rgb(254, 254, 254);
+        }
+        
+         ::placeholder {
+            color: rgb(97, 242, 255);
+            font-size: 0.8em;
+        }
+        .previous_page{
+            position: absolute;
+            text-decoration: none;
+            background:transparent;
+            backdrop-filter: blur(100px);
+            border-radius: 10px;
+            box-shadow: 0 5px 5px black;
+            text-shadow: 0px 10px 10px black;
+            color: rgb(255, 255, 255);
+            border: 1px solid white;
+            margin-left: -85%;
+            margin-top:-35.2%;
+        }
+        .link{
+            position: absolute;
+            text-decoration: none;
+            background:transparent;
+            backdrop-filter: blur(100px);
+            border-radius: 10px;
+            box-shadow: 0 5px 5px black;
+            text-shadow: 0px 10px 10px black;
+            color:white;
+            border: 1px solid white;
+            font-size: 0.5cm;
+            margin-top: -35%;
+            margin-left: 35%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            justify-content: center;
+        }
+     input.rollno {
+            width: 39%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            outline: 0;
+            margin-left: 8%;
+            font-size: 0.9em;
+            border-bottom: 2px solid rgb(255, 234, 0);
+            font-family: cursive;
+            padding: 7px 0;
+            text-align: center;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.rollno:hover {
+            border-bottom: 2px solid rgb(0, 148, 89);
+        }
+        
+        input.marks {
+            width: 39%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(255, 234, 0);
+            outline: 0;
+            margin-left: 6.3%;
+            text-align: center;
+            font-size: 0.9em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.marks:hover {
+            border-bottom: 2px solid rgb(169, 0, 0);
+        }
+        
+        input.submit {
+            margin-left: 40%;
+            margin-top: 0%;
+            font-family: serif;
+            font-size: 1em;
+            font-weight: 200;
+            border-radius: 10px;
+            background: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            opacity: 50%;
+            cursor: grab;
+            backdrop-filter: blur(60px);
+            border: 3px solid white;
+            box-shadow: 0 0 20px white;
+        }
+        .logout-button{
+            margin-top: -35%;
+            margin-left: 95%;
+        }
+        #logout-btn{
+            background-color: #000000;
+            border-radius: 20px;
+            font-size: 0.6cm;
+            color: white;
+            box-shadow: 0 10px 10px white;
+        }
+</style>
+<script>
+       // Get the values from the query parameters in the URL
+       const params = new URLSearchParams(window.location.search);
+    const department = params.get("department");
+    const series = params.get("series");
+    const course = params.get("course");
+    const ctno = params.get("ctno");
+
+    // Set the values in the hidden fields
+    const departmentField = document.querySelector('input[name="department"]');
+    departmentField.value = department;
+
+    const seriesField = document.querySelector('input[name="series"]');
+    seriesField.value = series;
+
+    const courseField= document.querySelector('input[name="course"]');
+    courseField.value =course;
+
+    const ctnoField= document.querySelector('input[name="ctno"]');
+    ctnoField.value =ctno;
+        const submitbtn = document.querySelector('.submit');
+        submitbtn.addEventListener('click', () => {
+            function clearInput(target) {
+                if (target.value == 'clear input') {
+                    target.value = "";
+                }
+            }
+
+        });
+
+        
+        const logoutButton = document.getElementById('logout-btn');
+        logoutButton.addEventListener('click', () => {
+            alert('Click OK to logout.');
+            window.location.href="index.html";
+        });
+
+    document.getElementById("rollForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        const rollInput = document.getElementById("rollno");
+        const enteredRoll = rollInput.value;
+
+        // Check if the roll has been entered before in local storage
+        if (localStorage.getItem("roll") && localStorage.getItem("roll").includes(enteredRoll)) {
+            alert("Roll number already entered!");
+            rollInput.value = ""; // Clear the input
+        } else {
+            // Check if the roll number is already in the database via an API request
+            try {
+                const response = await fetch(`/check-roll?roll=${enteredRoll}`);
+                const data = await response.json();
+
+                if (data.exists) {
+                    alert("Roll number already exists in the database!");
+                    rollInput.value = ""; // Clear the input
+                } else {
+                    // Add the roll to local storage
+                    const rolls = localStorage.getItem("roll") || "";
+                    localStorage.setItem("roll", rolls + "," + enteredRoll);
+
+                    // Redirect to the same page
+                    window.location.href = window.location.href;
+                }
+            } catch (error) {
+                console.error("Error checking roll number:", error);
+            }
+        }
+    });
+  </script>
+  <script src="index.js"></script>
+</html>

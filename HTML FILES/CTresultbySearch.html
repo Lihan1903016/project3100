@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search Roll and Marks</title>
+</head>
+
+<body>
+      
+    <div class="Searchbox">
+        <h1>Get Your CT marks</h1>
+        <form id="search-form">
+            <label for="roll">Roll Number</label>
+            <input type="number" id="roll" name="roll" required><br><br>
+            <label for="course">Course Title</label>
+            <input type="text" id="course" name="course" required><br><br>
+            <label for="ctno">Select Ct no.</label>
+            <select id="ctselect" class="ctselect" required>
+                <option selected disabled></option>
+                <option value="CT(1)">CT(1)</option>
+                <option value="CT(2)">CT(2)</option>
+                <option value="CT(3)">CT(3)</option>
+                <option value="CT(4)">CT(4)</option>
+            </select>
+            <button type="submit" class="searchbtn">Search</button>
+        </form>
+    </div>
+    
+    <div id="result" class="result">
+    </div>
+
+    <div class="logout-button">
+        <button id="logout-btn">Logout</button>
+    </div>
+    <style>
+        body {
+            min-height: 80vh;
+            display: flex;
+            background: url('/Image/Homepage.jpg');
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .Searchbox {
+            position: fixed;
+            display: flex;
+            width: 500px;
+            height: 500px;
+            border-radius: 250px;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            backdrop-filter: blur(50px);
+            box-shadow: 0 0 10px rgb(255, 255, 255);
+            margin-top: 10%;
+            margin-left: 55%;
+        }
+        
+        #roll {
+            margin-top: 15%;
+            height: 30px;
+            width: 200px;
+            text-align: center;
+            border-radius: 40px;
+            border: 3px solid black;
+            font-size: 0.8em;
+            font-family: cursive;
+            font-weight: bolder;
+        }
+        
+        #course {
+            height: 30px;
+            width: 200px;
+            text-align: center;
+            border-radius: 40px;
+            border: 3px solid black;
+            font-size: 0.8em;
+            font-family: cursive;
+            font-weight: bolder;
+        }
+        
+        .ctselect {
+            display: flex;
+            width: 40%;
+            height: 30px;
+            margin-top: -8.5%;
+            margin-left: 38%;
+            font-size: 0.8em;
+            border: 3px solid green;
+            border-radius: 40px;
+            text-align: center;
+            background: black;
+            color: white;
+            cursor: pointer;
+        }
+        
+        #search-form {
+            color: white;
+            font-family: cursive;
+            font-size: 1.2em;
+        }
+        
+        label {
+            color: rgb(255, 255, 255);
+            background: rgb(73, 73, 73);
+            border-radius: 10px;
+        }
+        
+        .searchbtn {
+            width: 160px;
+            height: 35px;
+            margin-top: 7%;
+            margin-left: 32%;
+            justify-content: center;
+            align-items: center;
+            font-size: 1em;
+            font-family: cursive;
+            border-radius: 10px;
+            background: rgb(0, 136, 136);
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            box-shadow: 10px 10px 10px black;
+        }
+        
+        .logout-button{
+            margin-top: -38%;
+            margin-left: 95%;
+        }
+        #logout-btn{
+            background-color: #000000;
+            border-radius: 20px;
+            font-size: 0.6cm;
+            color: white;
+            box-shadow: 0 10px 10px white;
+        }
+
+        h1 {
+            color: rgb(255, 255, 255);
+            position: fixed;
+            cursor: none;
+            display: flex;
+            font-family: cursive;
+            margin-top: -60%;
+            border-style: groove;
+            border-color: black;
+            border-radius: 5px;
+            font-size: 0.9em;
+            box-shadow: 2px 2px 2px white;
+        }
+        
+        #result {
+            display: flex;
+            position: fixed;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid black;
+            background: black;
+            color: white;
+            font-family: serif;
+            width: 300px;
+            height: 200px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px black;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        #result.active-popup {
+            transform: scalex(1);
+        }
+    </style>
+    <script>
+        const searchbtn = document.querySelector('.searchbtn');
+        const form = document.querySelector('#search-form');
+        const result = document.querySelector('#result');
+    
+        const roll = document.querySelector('#roll').value;
+        const ctno = document.querySelector('#ctselect').value;
+        const course = document.querySelector('#course').value;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const roll = document.querySelector('#roll').value;
+            const ctno = document.querySelector('#ctselect').value;
+            const course = document.querySelector('#course').value;
+            if (roll !== "" && course !== "" && ctno !== ""){
+                const response = await fetch(`/search?roll=${roll}&course=${course}&ctno=${ctno}`);
+                const data = await response.json();
+                if (data.error) {
+                    result.innerText = data.error;
+                }
+                else {
+                    result.innerHTML = `
+                        <p>Course Title: ${data.course}<br>
+                        CT No.: ${data.ctno}<br>
+                        Roll: ${data.roll}<br>
+                        Marks: ${data.marks}</p>`;
+                }
+            }
+        });
+        
+        searchbtn.addEventListener('click', () => {
+            const roll = document.querySelector('#roll').value;
+            const ctno = document.querySelector('#ctselect').value;
+            const course = document.querySelector('#course').value;
+            if (roll !== "" && course !== "" && ctno !== ""){
+                result.classList.add('active-popup');
+            } 
+        });
+        const logoutButton = document.getElementById('logout-btn');
+        logoutButton.addEventListener('click', () => {
+            alert('Click OK to logout.');
+            window.location.href="index.html";
+        });
+    </script>
+
+</body>
+<script src="index.js"></script>
+
+</html>

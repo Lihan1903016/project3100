@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+</head>
+
+<body>
+    <div class="linkbox">
+        <marquee direction="bottom">
+            <h1 class="Headline">See Your CT result ↓</h1>
+        </marquee>
+        <a href="CTresultbySearch.html" target="_blank">Click here to search your Marks</a>
+    </div>
+</body>
+<style>
+    body {
+        min-height: 80vh;
+        background: url('/Image/Homepage.jpg');
+        display: flex;
+        justify-content: center;
+    }
+    
+    .Headline {
+        text-align: center;
+        font-size: 1.5em;
+        font-family: cursive;
+        color: rgb(255, 255, 255);
+        backdrop-filter: blur(40px);
+        box-shadow: 0 0 10px white;
+    }
+    
+    .linkbox {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 260px;
+        border-radius: 10px;
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-decoration: none;
+    }
+    
+    .linkbox a {
+        display: inline-flex;
+        justify-content: center;
+        margin-top: 2%;
+        width: 250px;
+        color: rgb(0, 0, 0);
+        font-weight: bolder;
+        font-size: .9em;
+        font-family: cursive;
+        text-decoration: none;
+        border-radius: 10px; 
+        background: white;
+        box-shadow: 0 5px 5px rgb(8, 255, 99);
+    }
+    
+    .linkbox a:hover {
+        background: transparent;
+       backdrop-filter: blur(80px);
+        color: rgb(255, 255, 255);
+    }
+</style>
+<script src="index.js"></script>
+
+</html>

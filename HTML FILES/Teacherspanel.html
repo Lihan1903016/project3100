@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Panel</title>
+</head>
+
+<body>
+    <a href="AllResults.html">Click Here to See all result</a>
+    <div class="CT-Marks">
+        <form action="/ctmarks" method="GET">
+            <h1>&nbsp;&nbsp;&nbsp;&nbsp;CT Marks</h1>
+            <label for="department">Department:</label>
+            <select id="department" class="department" name="department" required>
+                <option selected disabled>Select Department</option>
+                
+                <option disabled>Faculty of Electrical & Computer Engineering</option>
+                <option value="CSE">Computer Science & Engineering(CSE)</option>
+                <option value="EEE">Electrical & Electronic Engineering(EEE)</option>
+                <option value="ECE">Electrical & Computer Engineering(ECE)</option>
+                <option value="ETE">Electronics & Telecommunication Engineering(ETE)</option>
+                
+                <option disabled>Faculty of Mechanical Engineering</option>
+                <option value="ME">Mechanical Engineering(ME)</option>
+                <option value="MTE">Mechatronics Engineering(MTE)</option>
+                <option value="MSE">Materials Science & Engineering(MSE)</option>
+                <option value="IPE">Industrial & Production Engineering(IPE)</option>
+                <option value="CFPE">Chemical & Food Process Engineering(CFPE)</option>
+                <option value="GCE">Glass & Ceramic Engineering(GCE)</option>
+
+                <option disabled>Faculty of Civil Engineering</option>
+                <option value="CE">Civil Engineering (CE)</option>
+                <option value="BECM">Building Engineering & Construction Management (BECM)</option>
+                <option value="URP">Urban & Regional Planning (URP)</option>
+                <option value="Arch">Architecture (Arch.)</option>
+              </select><br><br>
+            <label for="series">Series:</label>
+            <input type="text" name="series" id="series" class="series" placeholder="Enter Series Here" required><br><br>
+
+            <label for="course">Course Title</label>
+            <input type="text" class="course" id="course" name="course" placeholder="Enter Course Title" required><br><br>
+
+            <label for="CT no.">CT No.</label>
+            <select id="ctno" class="ctno" name="ctno" required>
+                <option selected disabled>Select Ct No.</option>
+                <option value="CT(1)">CT(1)</option>
+                <option value="CT(2)">CT(2)</option>
+                <option value="CT(3)">CT(3)</option>
+                <option value="CT(4)">CT(4)</option>
+            </select><br><br>
+            <input type="submit" value="Next" class="submit">
+        </form>
+    </div>
+    <style>
+        body {
+            min-height: 80vh;
+            position: relative;
+            display: flex;
+            background: url('/Image/Homepage.jpg');
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .CT-Marks {
+            position: fixed;
+            margin-top: 5%;
+            margin-left: 50%;
+            font-size: 1.3em;
+            width: 550px;
+            height: 450px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 20px;
+            backdrop-filter: blur(70px);
+            z-index: 1;
+            box-shadow: 0 0 50px rgb(255, 255, 255);
+        }
+        
+        .CT-Marks h1 {
+            margin-left: 25%;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 5px rgb(240, 240, 240);
+        }
+        
+        label {
+            margin-left: 10%;
+            font-size: 0.9em;
+            font-family: cursive;
+            border-bottom-style: groove;
+            border-radius: 5px;
+            cursor: none;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 15px rgb(254, 254, 254);
+        }
+        
+         ::placeholder {
+            color: rgb(97, 242, 255);
+            font-size: 0.8em;
+        }
+        
+        .department {
+            width: 62%;
+            font-size: 0.7em;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 8px;
+            background:black;
+            backdrop-filter: blur(140px);
+            text-align: center;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+        
+        .ctno {
+            width: 40%;
+            margin-left: 9.2%;
+            font-size: 0.7em;
+            border:2px solid rgb(255, 255, 255);
+            border-radius: 8px;
+            text-align: center;
+            background:black;
+            backdrop-filter: blur(140px);
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+        input.series {
+            width: 30%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(255, 234, 0);
+            outline: 0;
+            margin-left: 9%;
+            font-size: 0.9em;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            padding: 7px 0;
+            text-align: center;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.series:hover {
+            border-bottom: 2px solid rgb(233, 233, 233);
+        }
+        input.course {
+            width: 39%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(255, 234, 0);
+            outline: 0;
+            margin-left: 1%;
+            font-size: 0.9em;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            padding: 7px 0;
+            text-align: center;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.course:hover {
+            border-bottom: 2px solid rgb(233, 233, 233);
+        }
+        
+        input.roll {
+            width: 39%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            outline: 0;
+            margin-left: 14%;
+            font-size: 0.9em;
+            border-bottom: 2px solid rgb(255, 234, 0);
+            font-family: cursive;
+            padding: 7px 0;
+            text-align: center;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.roll:hover {
+            border-bottom: 2px solid rgb(0, 148, 89);
+        }
+        
+        input.marks {
+            width: 39%;
+            border: 0;
+            color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(255, 234, 0);
+            outline: 0;
+            margin-left: 6.3%;
+            text-align: center;
+            font-size: 0.9em;
+            font-family: cursive;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        input.marks:hover {
+            border-bottom: 2px solid rgb(169, 0, 0);
+        }
+        
+        input.submit {
+            margin-left: 40%;
+            margin-top: 0%;
+            font-family: serif;
+            font-size: 1em;
+            font-weight: 200;
+            border-radius: 10px;
+            background: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            opacity: 50%;
+            cursor: grab;
+            backdrop-filter: blur(60px);
+            border: 3px solid white;
+            box-shadow: 0 0 20px white;
+        }
+        
+        a {
+            box-shadow: 0 0 20px black;
+            font-size: 1.4em;
+            border-radius: 10px;
+            backdrop-filter: blur(80px);
+            margin-top: -30%;
+            margin-left: 50%;
+            color: rgb(0, 0, 0);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            justify-content: center;
+            text-decoration: none;
+            background: white;
+        }
+    </style>
+</body>
+<script src="index.js"></script>
+
+</html>
